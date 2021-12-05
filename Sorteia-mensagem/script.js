@@ -1,8 +1,12 @@
 let msg_list = ["msg1", "msg2", "msg3"]
 
-function mensagem(){
-    let msg_escolhida = Math.floor(Math.random() * msg_list.length);
-    console.log(msg_list [msg_escolhida]);
-    // return msg_list [msg_escolhida]
-    document.getElementById("ler_msg").innerHTML = msg_list[msg_escolhida];
+
+const mensagem = async() => {
+    const response = await fetch('https://61ac1511264ec200176d43aa.mockapi.io/sorteia-mensagem/v1/msg');
+    const myJson = await response.json(); 
+    let indice = Math.floor(Math.random() * myJson.length);
+    document.getElementById("ler_msg").innerHTML = myJson[indice].msg;
+    
+    console.log(indice);
+    console.log(myJson[indice].msg);
 }
